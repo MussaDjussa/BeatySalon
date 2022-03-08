@@ -1,0 +1,53 @@
+﻿    <Window x:Class="BeatySalon.View.Windows.Basket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeatySalon.View.Windows"
+        mc:Ignorable="d"
+        Title="Basket" Height="450" Width="800"
+        WindowStartupLocation="CenterOwner"
+        >
+    <Grid>
+        <ListView Grid.Row="1" 
+                  x:Name="ListViewProduct"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ItemsSource="{Binding BasketList, UpdateSourceTrigger=PropertyChanged}">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="30"
+                            Height="350"
+                            Width="200"
+                            BorderThickness="1"
+                            BorderBrush="Green"
+                            x:Name="Border">
+                        <StackPanel Margin="10">
+                            <Image Source="{Binding MainImagePath, StringFormat=..//{0}}"/>
+
+                            <TextBlock Text="{Binding Title}"
+                                       FontWeight="Bold"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       Margin="12"
+                                       FontSize="10"/>
+                            <TextBlock Text="{Binding Cost,StringFormat= Цена: {0}}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding isActive}"
+                                       Margin="10"
+                                       HorizontalAlignment="Center"
+                                       Opacity="0.5"/>
+                        </StackPanel>
+
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Window>
